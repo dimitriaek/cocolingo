@@ -7,6 +7,7 @@ import StatusBanner from "../components/StatusBanner";
 import {
   getAreaLabel,
   getCreateLanguage,
+  getLanguageLabel,
   getOtherPerson,
   getThemeClass,
   HOME_ROUTE,
@@ -62,7 +63,7 @@ export default function CreateQuizPage() {
 
   return (
     <Layout
-      title={`Create ${LANGUAGE_COPY[language].label} quiz`}
+      title={`Create ${getLanguageLabel(language, true)} quiz`}
       subtitle={`A quick ${LANGUAGE_COPY[language].label.toLowerCase()} pop quiz from ${PEOPLE[person].label} to ${PEOPLE[otherPerson].label}.`}
       themeClass={getThemeClass(language)}
       breadcrumbs={[
@@ -74,7 +75,7 @@ export default function CreateQuizPage() {
       {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
 
       <Panel
-        title="New quiz"
+        title={`New ${getLanguageLabel(language, true)} quiz`}
         subtitle="Keep it short, friendly, and easy to answer in one text box."
       >
         <form className="form-stack" onSubmit={handleSubmit}>
@@ -84,7 +85,7 @@ export default function CreateQuizPage() {
               rows="4"
               value={form.phrase}
               onChange={(event) => setForm((current) => ({ ...current, phrase: event.target.value }))}
-              placeholder="Write the Greek or French phrase to translate..."
+              placeholder={`Enter the phrase for ${PEOPLE[otherPerson].label} to translate...`}
               required
             />
           </label>

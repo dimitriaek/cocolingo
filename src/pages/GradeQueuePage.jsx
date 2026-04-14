@@ -7,6 +7,7 @@ import {
   formatDate,
   getAreaLabel,
   getDashboardDataForPerson,
+  getLanguageLabel,
   getThemeClass,
   HOME_ROUTE,
   isValidPerson,
@@ -27,7 +28,7 @@ export default function GradeQueuePage() {
 
   return (
     <Layout
-      title={`Grade ${LANGUAGE_COPY[language].label} submissions`}
+      title={`Grade ${getLanguageLabel(language, true)} submissions`}
       subtitle={`Submitted answers waiting for ${PEOPLE[person].label} to score.`}
       themeClass={getThemeClass(language)}
       breadcrumbs={[
@@ -38,7 +39,7 @@ export default function GradeQueuePage() {
     >
       {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
       <Panel
-        title="Needs grading"
+        title={`${getLanguageLabel(language, true)} submissions to grade`}
         subtitle="Open a submission, score it from 0 to 10, and optionally leave a short note."
       >
         {isLoading ? (
@@ -65,7 +66,7 @@ export default function GradeQueuePage() {
             ))}
           </div>
         ) : (
-          <p className="empty-state">Nothing needs grading right now.</p>
+          <p className="empty-state">No {LANGUAGE_COPY[language].label.toLowerCase()} submissions need grading right now.</p>
         )}
       </Panel>
     </Layout>

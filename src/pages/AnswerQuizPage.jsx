@@ -7,6 +7,7 @@ import Panel from "../components/Panel";
 import StatusBanner from "../components/StatusBanner";
 import {
   getAreaLabel,
+  getLanguageLabel,
   getOtherPerson,
   getThemeClass,
   HOME_ROUTE,
@@ -64,7 +65,7 @@ export default function AnswerQuizPage() {
               Add a quiz for {PEOPLE[otherPerson].label}
             </Link>
             <Link to={`/${person}/grade`} className="button button-secondary">
-              Grade {LANGUAGE_COPY[PEOPLE[person].nativeLanguage].label} submissions
+              Grade {getLanguageLabel(PEOPLE[person].nativeLanguage, true)} submissions
             </Link>
           </div>
         </Panel>
@@ -130,7 +131,7 @@ export default function AnswerQuizPage() {
 
   return (
     <Layout
-      title={`${LANGUAGE_COPY[quiz.language].label} pop quiz`}
+      title={`${getLanguageLabel(quiz.language, true)} pop quiz`}
       subtitle={`A quick translation for ${PEOPLE[person].label}, created by ${PEOPLE[quiz.created_by].label}.`}
       themeClass={getThemeClass(quiz.language)}
       breadcrumbs={[

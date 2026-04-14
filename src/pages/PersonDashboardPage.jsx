@@ -8,6 +8,7 @@ import TaskCard from "../components/TaskCard";
 import {
   getAreaLabel,
   getDashboardDataForPerson,
+  getLanguageLabel,
   getThemeClass,
   HOME_ROUTE,
   isValidPerson,
@@ -41,21 +42,21 @@ export default function PersonDashboardPage() {
 
       <section className="card-grid card-grid-three">
         <TaskCard
-          title="Answer pending quizzes"
+          title={`Answer ${getLanguageLabel(personData.answerLanguage, true)} quizzes`}
           copy={`Open ${LANGUAGE_COPY[personData.answerLanguage].label} phrases waiting for your translation.`}
           count={personData.pendingToAnswer.length}
           to={`/${person}/answer`}
           accent={getThemeClass(personData.answerLanguage)}
         />
         <TaskCard
-          title="Grade submitted attempts"
+          title={`Grade ${getLanguageLabel(personData.createLanguage, true)} submissions`}
           copy={`Score the ${LANGUAGE_COPY[personData.createLanguage].label} quizzes you created.`}
           count={personData.pendingToGrade.length}
           to={`/${person}/grade`}
           accent={getThemeClass(personData.createLanguage)}
         />
         <TaskCard
-          title="Create a new quiz"
+          title={`Create ${getLanguageLabel(personData.createLanguage, true)} quiz`}
           copy={`Write a fresh ${LANGUAGE_COPY[personData.createLanguage].label} pop quiz for ${PEOPLE[otherPerson].label}.`}
           count="+"
           to={`/${person}/create`}
@@ -97,7 +98,7 @@ export default function PersonDashboardPage() {
       </section>
 
       <Panel
-        title="Recent quiz history"
+        title={`Recent ${getLanguageLabel(personData.answerLanguage, true)} quiz history`}
         subtitle={`Recent ${LANGUAGE_COPY[personData.answerLanguage].label} answers and scores for ${info.label}.`}
       >
         <HistoryTable items={personData.gradedHistory.slice(0, 6)} />

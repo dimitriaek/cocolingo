@@ -7,6 +7,7 @@ import {
   formatDate,
   getAreaLabel,
   getDashboardDataForPerson,
+  getLanguageLabel,
   getThemeClass,
   HOME_ROUTE,
   isValidPerson,
@@ -27,7 +28,7 @@ export default function AnswerQueuePage() {
 
   return (
     <Layout
-      title={`Answer ${LANGUAGE_COPY[language].label} quizzes`}
+      title={`Answer ${getLanguageLabel(language, true)} quizzes`}
       subtitle={`Open prompts waiting for ${PEOPLE[person].label}.`}
       themeClass={getThemeClass(language)}
       breadcrumbs={[
@@ -38,7 +39,7 @@ export default function AnswerQueuePage() {
     >
       {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
       <Panel
-        title="Pending quizzes"
+        title={`Pending ${getLanguageLabel(language, true)} quizzes`}
         subtitle="Each one is a quick pop quiz with hints you can reveal when needed."
       >
         {isLoading ? (
@@ -65,7 +66,7 @@ export default function AnswerQueuePage() {
             ))}
           </div>
         ) : (
-          <p className="empty-state">No open quizzes right now. Time to create one instead.</p>
+          <p className="empty-state">No {LANGUAGE_COPY[language].label.toLowerCase()} quizzes open right now. Time to create one instead.</p>
         )}
       </Panel>
     </Layout>

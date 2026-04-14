@@ -20,12 +20,14 @@ export const PEOPLE = {
 export const LANGUAGE_COPY = {
   greek: {
     label: "Greek",
+    flag: "🇬🇷",
     themeClass: "theme-greek",
     pillClass: "pill-greek",
     tone: "Soft Aegean blue accents for Greek phrases and grading.",
   },
   french: {
     label: "French",
+    flag: "🇫🇷",
     themeClass: "theme-french",
     pillClass: "pill-french",
     tone: "Soft tricolor accents for French phrases and grading.",
@@ -50,6 +52,33 @@ export function getCreateLanguage(person) {
 
 export function getAnswerLanguage(person) {
   return PEOPLE[person]?.learningLanguage;
+}
+
+export function getLanguageFlag(language) {
+  return LANGUAGE_COPY[language]?.flag || "";
+}
+
+export function getLanguageLabel(language, withFlag = false) {
+  const baseLabel = LANGUAGE_COPY[language]?.label || titleCase(language);
+
+  if (!withFlag) {
+    return baseLabel;
+  }
+
+  const flag = getLanguageFlag(language);
+  return flag ? `${baseLabel} ${flag}` : baseLabel;
+}
+
+export function getPracticeLabel(person) {
+  if (person === "dimitri") {
+    return "Greek → French practice";
+  }
+
+  if (person === "priscila") {
+    return "French → Greek practice";
+  }
+
+  return "";
 }
 
 export function titleCase(value = "") {

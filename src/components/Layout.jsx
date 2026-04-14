@@ -11,6 +11,7 @@ export default function Layout({
   heroLogo = "none",
   heroCentered = false,
   hideTitle = false,
+  heroVariant = "default",
 }) {
   return (
     <div className={`app-shell ${themeClass}`.trim()}>
@@ -18,7 +19,11 @@ export default function Layout({
       <div className="background-glow background-glow-b" />
       <div className="background-glow background-glow-c" />
       <main className="page-wrap">
-        <header className={`hero-card frosted-card ${heroCentered ? "hero-card-centered" : ""}`.trim()}>
+        <header
+          className={`hero-card frosted-card ${heroCentered ? "hero-card-centered" : ""} ${
+            heroVariant !== "default" ? `hero-card-${heroVariant}` : ""
+          }`.trim()}
+        >
           <div className="hero-topline">
             <Link to={HOME_ROUTE} className="brand-link">
               <img
@@ -43,13 +48,15 @@ export default function Layout({
               )}
             </nav>
           ) : null}
-          {heroLogo !== "none" ? (
-            <div className={`hero-logo hero-logo-${heroLogo}`}>
-              <img src="/cocolingo_logo.png" alt="CocoLingo logo" />
-            </div>
-          ) : null}
-          {!hideTitle ? <h1>{title}</h1> : null}
-          <p>{subtitle}</p>
+          <div className="hero-content">
+            {heroLogo !== "none" ? (
+              <div className={`hero-logo hero-logo-${heroLogo}`}>
+                <img src="/cocolingo_logo.png" alt="CocoLingo logo" />
+              </div>
+            ) : null}
+            {!hideTitle ? <h1>{title}</h1> : null}
+            <p>{subtitle}</p>
+          </div>
         </header>
         {children}
       </main>

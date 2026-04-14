@@ -1,4 +1,4 @@
-import { LANGUAGE_COPY, PEOPLE } from "../lib/utils";
+import { getLanguageLabel, PEOPLE } from "../lib/utils";
 
 export default function AverageScoreCard({ person, averageScore, gradedCount }) {
   const info = PEOPLE[person];
@@ -13,7 +13,7 @@ export default function AverageScoreCard({ person, averageScore, gradedCount }) 
       <div className="average-score-header">
         <div className="card-badge">{info.label}</div>
         <span className="average-score-copy">
-          {LANGUAGE_COPY[info.learningLanguage].label} answers
+          {getLanguageLabel(info.learningLanguage, true)} answers
         </span>
       </div>
       <div
@@ -35,7 +35,7 @@ export default function AverageScoreCard({ person, averageScore, gradedCount }) 
         </div>
       </div>
       <p>
-        Based on {gradedCount} graded {LANGUAGE_COPY[info.learningLanguage].label.toLowerCase()}{" "}
+        Based on {gradedCount} graded {getLanguageLabel(info.learningLanguage).toLowerCase()}{" "}
         quizzes.
       </p>
     </article>

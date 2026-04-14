@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getAreaLabel, PEOPLE } from "../lib/utils";
+import { getAreaLabel, getPracticeLabel, PEOPLE } from "../lib/utils";
 
 export default function PersonCard({ person, summary }) {
   const info = PEOPLE[person];
@@ -8,7 +8,7 @@ export default function PersonCard({ person, summary }) {
 
   return (
     <Link to={`/${person}`} className="person-card frosted-card">
-      <div className="card-badge">{info.label} Area</div>
+      <div className="card-badge">{getPracticeLabel(person)}</div>
       <h2>{info.label} Area</h2>
       <p>{info.accentCopy}</p>
       <div className="person-card-meta">

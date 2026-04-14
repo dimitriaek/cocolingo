@@ -19,6 +19,7 @@ export default function HomePage() {
       heroLogo="large"
       heroCentered
       hideTitle
+      heroVariant="home"
     >
       {error ? <StatusBanner tone="error">{error}</StatusBanner> : null}
       <section className="card-grid card-grid-two">
